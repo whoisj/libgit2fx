@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F6FF5F8F-BD30-46E7-88CE-076556B76B0A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Libgit2</RootNamespace>
+    <AssemblyName>libgit2fx</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assert.cs" />
+    <Compile Include="Crc32.cs" />
+    <Compile Include="GitCertificateType.cs" />
+    <Compile Include="GitDiffFlags.cs" />
+    <Compile Include="GitErrorClass.cs" />
+    <Compile Include="GitFetchPruneTypes.cs" />
+    <Compile Include="GitFetchTagType.cs" />
+    <Compile Include="GitFileMode.cs" />
+    <Compile Include="GitPackBuilderStage.cs" />
+    <Compile Include="GitTransportFlags.cs" />
+    <Compile Include="GitVectorFlags.cs" />
+    <Compile Include="Internals\git_annotated_commit.cs" />
+    <Compile Include="Internals\git_attr.cs" />
+    <Compile Include="Internals\git_blame.cs" />
+    <Compile Include="Internals\git_blame_hunk.cs" />
+    <Compile Include="Internals\git_blob.cs" />
+    <Compile Include="Internals\git_branch.cs" />
+    <Compile Include="Internals\git_branch_iterator.cs" />
+    <Compile Include="Internals\git_buf.cs" />
+    <Compile Include="Internals\git_cert.cs" />
+    <Compile Include="Internals\git_checkout.cs" />
+    <Compile Include="Internals\git_cherrypick.cs" />
+    <Compile Include="Internals\git_clone.cs" />
+    <Compile Include="Internals\git_commit.cs" />
+    <Compile Include="Internals\git_config.cs" />
+    <Compile Include="Internals\git_diff.cs" />
+    <Compile Include="Internals\git_diff_file.cs" />
+    <Compile Include="Internals\git_diff_similarity_metric.cs" />
+    <Compile Include="Internals\git_error.cs" />
+    <Compile Include="Internals\git_index.cs" />
+    <Compile Include="Internals\git_object.cs" />
+    <Compile Include="Internals\git_odb.cs" />
+    <Compile Include="Internals\git_packbuilder.cs" />
+    <Compile Include="Internals\git_push.cs" />
+    <Compile Include="Internals\git_push_update.cs" />
+    <Compile Include="Internals\git_refdb.cs" />
+    <Compile Include="Internals\git_reference.cs" />
+    <Compile Include="Internals\git_remote.cs" />
+    <Compile Include="Internals\git_remote_head.cs" />
+    <Compile Include="Internals\git_repository.cs" />
+    <Compile Include="Internals\git_repository_init_options .cs" />
+    <Compile Include="Internals\git_signature.cs" />
+    <Compile Include="Internals\git_time.cs" />
+    <Compile Include="Internals\git_transfer_progress.cs" />
+    <Compile Include="Internals\git_transport.cs" />
+    <Compile Include="Internals\git_tree.cs" />
+    <Compile Include="Ensure.cs" />
+    <Compile Include="GitAttributeCheckFlags.cs" />
+    <Compile Include="GitAttributeType.cs" />
+    <Compile Include="GitBlameFlags.cs" />
+    <Compile Include="Internals\git_blame_options.cs" />
+    <Compile Include="GitBranchType.cs" />
+    <Compile Include="GitCheckoutNotifyFlags.cs" />
+    <Compile Include="Internals\git_checkout_options.cs" />
+    <Compile Include="Internals\git_checkout_perfdata.cs" />
+    <Compile Include="GitCheckoutStrategyFlags.cs" />
+    <Compile Include="Internals\git_cherrypick_options.cs" />
+    <Compile Include="Internals\git_clone_options.cs" />
+    <Compile Include="GitCloneLocalType.cs" />
+    <Compile Include="Internals\git_cred.cs" />
+    <Compile Include="GitCredentialType.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="GitErrorCode.cs" />
+    <Compile Include="GitFetchOptions.cs" />
+    <Compile Include="GitFetchPruneStrategy.cs" />
+    <Compile Include="Internals\git_remote_callbacks .cs" />
+    <Compile Include="GitRemoteCompletionType.cs" />
+    <Compile Include="GitMergeFileFlags.cs" />
+    <Compile Include="GitMergeFileTypes.cs" />
+    <Compile Include="Internals\git_merge_options.cs" />
+    <Compile Include="GitMergeTreeFlags.cs" />
+    <Compile Include="Internals\git_oid.cs" />
+    <Compile Include="GitOidType.cs" />
+    <Compile Include="GitRepositoryInitMode.cs" />
+    <Compile Include="GitRespositoryFlags.cs" />
+    <Compile Include="Internals\git_strarray.cs" />
+    <Compile Include="Internals\git_vector.cs" />
+    <Compile Include="IUnicode.cs" />
+    <Compile Include="Error.cs" />
+    <Compile Include="Libgit2FxException.cs" />
+    <Compile Include="Internals\libgit2.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Releaser.cs" />
+    <Compile Include="RepositoryState.cs" />
+    <Compile Include="Internals\result.cs" />
+    <Compile Include="Trace.cs" />
+    <Compile Include="TraceFlags.cs" />
+    <Compile Include="Unicode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
