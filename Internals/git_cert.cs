@@ -5,6 +5,6 @@ namespace Libgit2.Internals
     [StructLayout(LayoutKind.Sequential)]
     internal unsafe struct git_cert
     {
-        GitCertificateType cert_type;
+        public CertificateType cert_type;
     }
 }

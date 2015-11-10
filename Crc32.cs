@@ -210,6 +210,12 @@ namespace Libgit2
             Add(ref hash, p, 0, sizeof(DateTime));
         }
 
+        public void Add(ref uint hash, DateTimeOffset value)
+        {
+            byte* p = (byte*)&value;
+            Add(ref hash, p, 0, sizeof(DateTimeOffset));
+        }
+
         public void Add(ref uint hash, Guid value)
         {
             byte* p = (byte*)&value;

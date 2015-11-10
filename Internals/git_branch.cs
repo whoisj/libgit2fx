@@ -34,10 +34,10 @@ namespace Libgit2.Internals
         public static extern void git_branch_iterator_free(git_branch_iterator* iterator);
 
         [DllImport(DllName, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "git_branch_iterator_new")]
-        public static extern result git_branch_iterator_new(git_branch_iterator** iterator_out, git_repository* repository, GitBranchFlags list_flags);
+        public static extern result git_branch_iterator_new(git_branch_iterator** iterator_out, git_repository* repository, BranchFlags list_flags);
 
         [DllImport(DllName, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "git_branch_lookup")]
-        public static extern result git_branch_lookup(git_branch** branch_out, git_repository* repository, byte* branch_name, GitBranchFlags branch_type);
+        public static extern result git_branch_lookup(git_branch** branch_out, git_repository* repository, byte* branch_name, BranchFlags branch_type);
 
         [DllImport(DllName, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "git_branch_move")]
         public static extern result git_branch_move(git_branch** new_branch_out, git_branch old_branch, byte* new_branch_name, bool allow_overwrite);
@@ -46,7 +46,7 @@ namespace Libgit2.Internals
         public static extern result git_branch_name(byte** branch_name_out, git_branch* branch);
 
         [DllImport(DllName, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "git_branch_next")]
-        public static extern result git_branch_next(git_branch** branch_out, ref GitBlameFlags out_type, git_branch_iterator* iterator);
+        public static extern result git_branch_next(git_branch** branch_out, ref BlameFlags out_type, git_branch_iterator* iterator);
 
         [DllImport(DllName, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "git_branch_set_upstream")]
         public static extern result git_branch_set_upstream(git_branch_iterator* branch, byte* upstream_name);

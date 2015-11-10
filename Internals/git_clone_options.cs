@@ -9,10 +9,10 @@ namespace Libgit2.Internals
         public uint version;
 
         public git_checkout_options checkout_opts;
-        public GitFetchOptions fetch_opts;
+        public git_fetch_options fetch_opts;
 
         public bool bare;
-        public GitCloneLocalType local;
+        public CloneLocalType local;
         public byte* checkout_branch;
 
         public git_signature* signature;

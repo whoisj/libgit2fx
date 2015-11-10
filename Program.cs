@@ -10,14 +10,6 @@ namespace Libgit2
 {
     class Program
     {
-        /**
-DWORD WINAPI GetEnvironmentVariable(
-          _In_opt_  LPCTSTR lpName,
-          _Out_opt_ LPTSTR  lpBuffer,
-          _In_      DWORD   nSize
-);
-        **/
-
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode, EntryPoint = "GetEnvironmentVariable")]
         private static extern UInt32 Traditional(string name, StringBuilder buffer, Int32 size);
 
@@ -35,7 +27,7 @@ DWORD WINAPI GetEnvironmentVariable(
                 StringBuilder safeBuffer = new StringBuilder(4096);
 
                 stopwatch.Start();
-                for (int i = 0; i < 1000; i++)
+                for (int i = 0; i < 10000; i++)
                 {
                     Traditional(PATH, safeBuffer, safeBuffer.MaxCapacity);
                 }
@@ -51,7 +43,7 @@ DWORD WINAPI GetEnvironmentVariable(
                 char[] pathBuffer = new[] { 'P', 'A', 'T', 'H', '\0' };
 
                 stopwatch.Start();
-                for (int i = 0; i < 1000; i++)
+                for (int i = 0; i < 10000; i++)
                 {
                     fixed (char* pb = pathBuffer)
                     fixed (char* ub = unsafeBuffer)
@@ -79,7 +71,7 @@ DWORD WINAPI GetEnvironmentVariable(
                 pb[4] = '\0';
 
                 stopwatch.Start();
-                for (int i = 0; i < 1000; i++)
+                for (int i = 0; i < 10000; i++)
                 {
                     Unsafe(pb, ub, LEN);
                 }

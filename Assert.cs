@@ -49,6 +49,12 @@ namespace Libgit2
             InternalAssert(value.CompareTo(min) > 0);
         }
 
+        public static unsafe void IsCertficiateType(git_cert* cert, CertificateType type)
+        {
+            NotNull(cert);
+            InternalAssert(cert->cert_type == type);
+        }
+
         [Conditional("DEBUG")]
         public static void LockIsHeld(object syncHandle)
         {

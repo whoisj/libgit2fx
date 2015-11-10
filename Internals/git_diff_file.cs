@@ -8,7 +8,7 @@ namespace Libgit2.Internals
         public git_oid id;
         public byte* path;
         public ulong size;
-        public GitDiffFlags flags;
-        public GitFileMode mode;
+        public DiffFlags flags;
+        public FileMode mode;
     }
 }

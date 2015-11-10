@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace Libgit2.Internals
 {
@@ -30,7 +31,7 @@ namespace Libgit2.Internals
         public static extern byte* git_repository_get_namespace(git_repository* repository);
 
         [DllImport(DllName, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "git_repository_hashfile")]
-        public static extern result git_repository_hashfile(git_oid** oidHandle, git_repository* repository, byte* path, GitOidType oidType, byte* as_path);
+        public static extern result git_repository_hashfile(git_oid** oidHandle, git_repository* repository, byte* path, OidType oidType, byte* as_path);
 
         [DllImport(DllName, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "git_repository_head")]
         public static extern result git_repository_head(git_reference** reference, git_repository* repository);
@@ -84,7 +85,7 @@ namespace Libgit2.Internals
         public static extern result git_repository_open_bare(git_repository** repository, byte* path);
 
         [DllImport(DllName, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "git_repository_open_ext")]
-        public static extern result git_repository_open_ext(git_repository** repository, byte* path, GitRepositoryFlags repository_flags, byte* ceiling_directories);
+        public static extern result git_repository_open_ext(git_repository** repository, byte* path, RepositoryFlags repository_flags, byte* ceiling_directories);
 
         [DllImport(DllName, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "git_repository_path")]
         public static extern byte* git_repository_path(git_repository* repository);

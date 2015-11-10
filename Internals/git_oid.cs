@@ -7,7 +7,7 @@ namespace Libgit2.Internals
     /// </summary>
     [System.Diagnostics.DebuggerDisplay("{DebuggerDisplay,nq}")]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential, Size = Size)]
-    internal struct git_oid
+    internal struct git_oid : IEquatable<git_oid>
     {
         public const int Size = 20;
         public static readonly git_oid Empty = new git_oid();
@@ -17,6 +17,41 @@ namespace Libgit2.Internals
         private string DebuggerDisplay
         {
             get { return ToString(7); }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is git_oid)
+            {
+                return this == (git_oid)obj;
+            }
+
+            return false;
+        }
+        
+        public bool Equals(git_oid other)
+        {
+            return this == other;
+        }
+
+        public override int GetHashCode()
+        {
+            uint hash = 0;
+
+            unsafe
+            {
+                unchecked
+                {
+                    fixed (byte* p = Value)
+                    {
+                        Crc32.Reversed.Initialize(out hash);
+                        Crc32.Reversed.Add(ref hash, p, 0, Size);
+                        Crc32.Reversed.Finalize(ref hash);
+                    }
+                }
+            }
+
+            return (int)hash;
         }
 
         public override string ToString()
@@ -103,5 +138,27 @@ namespace Libgit2.Internals
 
             return result;
         }
+
+        public static bool operator ==(git_oid value1, git_oid value2)
+        {
+            unsafe
+            {
+                byte* a = value1.Value;
+                byte* b = value2.Value;
+
+                int len = Size / sizeof(uint);
+
+                for (int i = 0; i < len; i++)
+                {
+                    if (((uint*)a)[i] != ((uint*)b)[i])
+                        return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool operator !=(git_oid value1, git_oid value2)
+            => !(value1 == value2);
     }
 }

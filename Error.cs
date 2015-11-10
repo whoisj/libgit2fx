@@ -5,7 +5,7 @@ namespace Libgit2
 {
     public sealed class Error
     {
-        internal Error(GitErrorCode errorCode)
+        internal Error(ErrorCode errorCode)
         {
             Assert.EnumDefined(errorCode);
 
@@ -13,10 +13,9 @@ namespace Libgit2
             LastError(out ErrorClass, out Message);
         }
 
-        public readonly GitErrorClass ErrorClass;
-        public readonly GitErrorCode ErrorCode;
-        public readonly IUnicode Message;
-
+        public readonly ErrorClass ErrorClass;
+        public readonly ErrorCode ErrorCode;
+        public readonly mstring Message;
 
         public static void ClearError()
         {
@@ -26,7 +25,7 @@ namespace Libgit2
             }
         }
 
-        public static unsafe bool LastError(out GitErrorClass value, out IUnicode message)
+        public static unsafe bool LastError(out ErrorClass value, out mstring message)
         {
             git_error* err;
 
@@ -37,7 +36,7 @@ namespace Libgit2
 
             if (err == null)
             {
-                value = GitErrorClass.None;
+                value = ErrorClass.None;
                 message = null;
                 return false;
             }
@@ -51,14 +50,14 @@ namespace Libgit2
                 }
                 else
                 {
-                    message = new Unicode(err->message);
+                    message = new mstring(err->message);
                 }
 
                 return true;
             }
         }
 
-        public static unsafe bool LastErrorClass(out GitErrorClass value)
+        public static unsafe bool LastErrorClass(out ErrorClass value)
         {
             git_error* err;
 
@@ -69,7 +68,7 @@ namespace Libgit2
 
             if (err == null)
             {
-                value = GitErrorClass.None;
+                value = ErrorClass.None;
                 return false;
             }
             else
@@ -79,7 +78,7 @@ namespace Libgit2
             }
         }
 
-        public static unsafe bool LastErrorMessage(out IUnicode message)
+        public static unsafe bool LastErrorMessage(out mstring message)
         {
             git_error* err;
 
@@ -92,23 +91,22 @@ namespace Libgit2
 
             if (err != null)
             {
-                message = new Unicode(err->message);
+                message = new mstring(err->message);
             }
 
             return message != null;
         }
 
-        public static unsafe void SetError(IUnicode message, GitErrorClass errorClass)
+        public static unsafe void SetError(string message, ErrorClass errorClass)
         {
             Ensure.NotNull(message, nameof(message));
             Ensure.EnumDefined(errorClass, nameof(errorClass));
 
+            mstring mbstr = message;
+
             using (libgit2.Lock())
             {
-                fixed (byte* messagePtr = message.Utf8Raw)
-                {
-                    NativeMethods.git_error_set(errorClass, messagePtr);
-                }
+                NativeMethods.git_error_set(errorClass, mbstr);
             }
         }
 

@@ -7,7 +7,7 @@ namespace Libgit2.Internals
     {
         public uint version;
 
-        public GitMergeTreeFlags tree_flags;
+        public MergeTreeFlags tree_flags;
         /// <summary>
         /// Similarity to consider a file renamed.
         /// </summary>
@@ -23,10 +23,10 @@ namespace Libgit2.Internals
         /// <summary>
         /// Flags for automerging content.
         /// </summary>
-        public GitMergeFileTypes file_favor;
+        public MergeFileTypes file_favor;
         /// <summary>
         /// File merging flags.
         /// </summary>
-        public GitMergeFileTypes file_flags;
+        public MergeFileTypes file_flags;
     }
 }

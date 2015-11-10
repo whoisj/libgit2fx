@@ -14,7 +14,7 @@ namespace Libgit2.Internals
         /// <summary>
         /// Default will be a dry run.
         /// </summary>
-        public GitCheckoutFlags checkout_strategy;
+        public CheckoutFlags checkout_strategy;
 
         /// <summary>
         /// Don't apply filters like CRLF conversion
@@ -27,13 +27,13 @@ namespace Libgit2.Internals
         /// <summary>
         /// Default is 0644 or 0755 as dictated by blob
         /// </summary>
-        public uint file_mode;
+        public FileMode file_mode;
         /// <summary>
         /// Default is O_CREAT | O_TRUNC | O_WRONLY.
         /// </summary>
-        public int file_open_flags;
+        public FileOpenFlags file_open_flags;
 
-        public GitCheckoutNotifyFlags notify_flags;
+        public CheckoutNotifyFlags notify_flags;
         /// <summary>
         /// <para>typeof(<see cref="git_checkout_notify_cb"/>).</para>
         /// </summary>
@@ -49,7 +49,7 @@ namespace Libgit2.Internals
 
         /// <summary>
         /// When not zeroed out, array of fnmatch patterns specifying which paths should be taken 
-        /// into account, otherwise all files.  Use <see cref="GitCheckoutFlags.DisablePathspecMatching"/> 
+        /// into account, otherwise all files.  Use <see cref="CheckoutFlags.DisablePathspecMatching"/> 
         /// to treat as simple list.
         /// </summary>
         public git_strarray paths;
@@ -58,10 +58,10 @@ namespace Libgit2.Internals
         /// <para>The expected content of the working directory; defaults to HEAD.</para>
         /// <para>If the working directory does not match this baseline information, that will produce a checkout conflict.</para>
         /// </summary>
-        public git_tree* baseline;
+        public git_tree* baseline_tree;
 
         /// <summary>
-        /// Overrides <see cref="baseline"/>, but expressed as an index.
+        /// Overrides <see cref="baseline_tree"/>, but expressed as an index.
         /// </summary>
         public git_index* baseline_index;
 
@@ -87,6 +87,4 @@ namespace Libgit2.Internals
         public void* perfdata_cb;
         public void* perfdata_payload;
     }
-
-    
 }

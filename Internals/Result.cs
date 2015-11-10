@@ -7,13 +7,13 @@ namespace Libgit2.Internals
     [StructLayout(LayoutKind.Sequential, Size = sizeof(int))]
     internal struct result : IComparable<result>, IEquatable<result>
     {
-        public result(GitErrorCode errorCode)
+        public result(ErrorCode errorCode)
         {
             ErrorCode = errorCode;
         }
 
         [MarshalAs(UnmanagedType.I4)]
-        public readonly GitErrorCode ErrorCode;
+        public readonly ErrorCode ErrorCode;
 
         private string DebuggerDisplay
         {
@@ -53,7 +53,7 @@ namespace Libgit2.Internals
         public static bool operator ==(result result1, result result2)
         {
             return (result1.ErrorCode == result2.ErrorCode)
-                || (result1.ErrorCode >= GitErrorCode.Ok && result2.ErrorCode >= GitErrorCode.Ok);
+                || (result1.ErrorCode >= ErrorCode.Ok && result2.ErrorCode >= ErrorCode.Ok);
         }
 
         public static bool operator !=(result result1, result result2)
@@ -83,16 +83,16 @@ namespace Libgit2.Internals
 
         public static implicit operator Boolean(result result)
         {
-            return result.ErrorCode >= GitErrorCode.Ok
-                || result.ErrorCode == GitErrorCode.Passthrough;
+            return result.ErrorCode >= ErrorCode.Ok
+                || result.ErrorCode == ErrorCode.Passthrough;
         }
 
-        public static implicit operator GitErrorCode(result result)
+        public static implicit operator ErrorCode(result result)
         {
             return result.ErrorCode;
         }
 
-        public static implicit operator result(GitErrorCode errorCode)
+        public static implicit operator result(ErrorCode errorCode)
         {
             return new result(errorCode);
         }
@@ -105,7 +105,7 @@ namespace Libgit2.Internals
 
         public static implicit operator result(int errorCode)
         {
-            GitErrorCode gitErrCode = (GitErrorCode)errorCode;
+            ErrorCode gitErrCode = (ErrorCode)errorCode;
             return new result(gitErrCode);
         }
     }

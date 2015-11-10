@@ -7,7 +7,7 @@ namespace Libgit2.Internals
     {
         public uint Version;
 
-        public GitBlameFlags flags;
+        public BlameFlags flags;
         public ushort MinMatchCharacters;
         public git_oid NewestCommit;
         public git_oid OldestCommit;

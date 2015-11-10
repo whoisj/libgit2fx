@@ -10,41 +10,77 @@ namespace Libgit2.Internals
         public libgit2()
             : base()
         {
-            result result;
-
-            using (Lock())
-            {
-                result = NativeMethods.git_libgit2_init();
-                Assert.Success(result);
-
-                result = NativeMethods.git_openssl_set_locking();
-                Assert.Success(result);
-            }
+            Startup();
         }
 
         ~libgit2()
         {
-            using (Lock())
-            {
-                result result = NativeMethods.git_libgit2_shutdown();
-                Assert.Success(result);
-            }
+            Shutdown();
         }
 
         private static readonly object @lock = new object();
 
+        private static long _refcount;
+        private static bool _shutdown;
+
+        internal static void AddReference()
+        {
+            if (Interlocked.Increment(ref _refcount) > 0)
+            {
+                Startup();
+            }
+        }        
+
         internal static IDisposable Lock()
         {
-            Monitor.Enter(@lock);
+            System.Threading.Monitor.Enter(@lock);
             return new Releaser(Unlock);
+        }
+
+        internal static void RemoveReference()
+        {
+            if (Interlocked.Decrement(ref _refcount) == 0)
+            {
+                Shutdown();
+            }
+        }
+
+        private static void Startup()
+        {
+            lock (@lock)
+            {
+                if (_shutdown)
+                {
+                    result result = NativeMethods.git_libgit2_init();
+                    Assert.Success(result);
+
+                    result = NativeMethods.git_openssl_set_locking();
+                    Assert.Success(result);
+
+                    _shutdown = false;
+                }
+            }
+        }
+
+        private static void Shutdown()
+        {
+            lock (@lock)
+            {
+                if (!_shutdown)
+                {
+                    result result = NativeMethods.git_libgit2_shutdown();
+                    Assert.Success(result);
+
+                    _shutdown = true;
+                }
+            }
         }
 
         private static void Unlock()
         {
-            Monitor.Exit(@lock);
+            System.Threading.Monitor.Exit(@lock);
         }
     }
-
     internal unsafe partial class NativeMethods
     {
         public const string DllName = "git2.dll";

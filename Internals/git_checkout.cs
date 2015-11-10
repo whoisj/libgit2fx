@@ -18,7 +18,7 @@ namespace Libgit2.Internals
         public static extern result git_checkout_tree(git_repository* repository, git_object* treeish, git_checkout_options* options);
     }
 
-    internal unsafe delegate result git_checkout_notify_cb(GitCheckoutNotifyFlags why, byte* path, git_diff_file* baseline, git_diff_file* target, git_diff_file* workdir, void* payloadHandle);
-    internal unsafe delegate void git_checkout_progress_cb(byte* path, UIntPtr completedSteps, UIntPtr totalSteps, void* payloadHandle);
-    internal unsafe delegate void git_checkout_perfdata_cb(git_checkout_perfdata* data, void* payloadHandle);
+    internal unsafe delegate result git_checkout_notify_cb(CheckoutNotifyFlags why, byte* path, git_diff_file* baseline, git_diff_file* target, git_diff_file* workdir, void* payload);
+    internal unsafe delegate void git_checkout_progress_cb(byte* path, UIntPtr completedSteps, UIntPtr totalSteps, void* payload);
+    internal unsafe delegate void git_checkout_perfdata_cb(git_checkout_perfdata* data, void* payload);
 }

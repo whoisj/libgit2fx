@@ -6,7 +6,7 @@ namespace Libgit2.Internals
     internal unsafe struct git_error
     {
         public byte* message;
-        public GitErrorClass error_class;
+        public ErrorClass error_class;
     }
 
     unsafe partial class NativeMethods
@@ -18,7 +18,7 @@ namespace Libgit2.Internals
         public static extern git_error* git_error_last();
 
         [DllImport(DllName, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "giterr_set_str")]
-        public static extern void git_error_set(GitErrorClass error_class, byte* message);
+        public static extern void git_error_set(ErrorClass error_class, byte* message);
 
         [DllImport(DllName, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "giterr_set_oom")]
         public static extern void git_error_oom();

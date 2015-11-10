@@ -10,7 +10,7 @@ namespace Libgit2.Internals
         private IntPtr _cmp;
         public void** contents;
         public UIntPtr size;
-        public GitVectorFlags flags;
+        public VectorFlags flags;
     }
 
     internal unsafe delegate result git_vector_cmp(void* data1, void* data2);

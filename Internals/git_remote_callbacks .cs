@@ -26,7 +26,7 @@ namespace Libgit2.Internals
         /// <summary>
         /// <para>This will be called if the remote host requires authentication in order to connect 
         /// to it.</para>
-        /// <para>Returning <see cref="GitErrorCode.Passthrough"/> will make libgit2 behave as 
+        /// <para>Returning <see cref="ErrorCode.Passthrough"/> will make libgit2 behave as 
         /// though this field isn't set.</para>
         /// <para>typeof(<see cref="git_cred_acquire_cb"/>).</para>
         /// </summary>
@@ -86,12 +86,8 @@ namespace Libgit2.Internals
         internal void* payload;
     }
 
-    internal unsafe delegate result git_transport_message_cb(git_transfer_progress* progress, void* payload);
-    internal unsafe delegate result git_remote_completion_cb(GitRemoteCompletionType type, void* payload);
-    internal unsafe delegate result git_transport_cb(out git_transport transport, ref git_remote owner, void* param);
+    
+    internal unsafe delegate result git_remote_completion_cb(RemoteCompletionType type, void* payload);    
     internal unsafe delegate result git_remote_update_tips_cb(byte* refname, git_oid* a, git_oid* b, void* data);
     internal unsafe delegate result git_remote_push_update_reference_cb(byte* refname, byte* status, void* data);
-    internal unsafe delegate result git_push_negotiation(git_push_update** updates, UIntPtr len, void* payload);
-    internal unsafe delegate result git_packbuilder_progress(GitPackBuilderStage stage, uint current, uint total);
-    internal unsafe delegate result git_push_transfer_progress(uint current, uint total, UIntPtr size, void* payload);
 }

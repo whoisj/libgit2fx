@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Libgit2
+namespace Libgit2.Internals
 {
     [StructLayout(LayoutKind.Sequential)]
     internal struct git_checkout_perfdata

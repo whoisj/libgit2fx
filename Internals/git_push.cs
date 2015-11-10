@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace Libgit2.Internals
 {
@@ -16,4 +17,7 @@ namespace Libgit2.Internals
         public uint pb_parallelism;
         public git_strarray* custom_headers;
     }
+
+    internal unsafe delegate result git_push_negotiation(git_push_update** updates, UIntPtr len, void* payload);
+    internal unsafe delegate result git_push_transfer_progress(uint current, uint total, UIntPtr size, void* payload);
 }
