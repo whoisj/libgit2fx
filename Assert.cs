@@ -41,18 +41,50 @@ namespace Libgit2
         }
 
         [Conditional("DEBUG")]
+        public static void GreaterThan<T>(T value, T lesser)
+            where T : IComparable<T>
+        {
+            NotNull(value);
+            NotNull(lesser);
+            InternalAssert(value.CompareTo(lesser) > 0);
+        }
+
+        internal static void WithInRange<T>(T idx, T min, T greater)
+            where T : IComparable<T>
+        {
+            GreaterThanOrEqualTo(idx, min);
+            LessThan(idx, greater);
+        }
+
+        [Conditional("DEBUG")]
         public static void GreaterThanOrEqualTo<T>(T value, T min)
             where T : IComparable<T>
         {
             NotNull(value);
             NotNull(min);
-            InternalAssert(value.CompareTo(min) > 0);
+            InternalAssert(value.CompareTo(min) >= 0);
         }
 
         public static unsafe void IsCertficiateType(git_cert* cert, CertificateType type)
         {
             NotNull(cert);
             InternalAssert(cert->cert_type == type);
+        }
+
+        public static void LessThan<T>(T value, T greater)
+            where T : IComparable<T>
+        {
+            NotNull(value);
+            NotNull(greater);
+            InternalAssert(value.CompareTo(greater) < 0);
+        }
+
+        public static void LessThanOrEqualTo<T>(T value, T max)
+            where T : IComparable<T>
+        {
+            NotNull(value);
+            NotNull(max);
+            InternalAssert(value.CompareTo(max) <= 0);
         }
 
         [Conditional("DEBUG")]

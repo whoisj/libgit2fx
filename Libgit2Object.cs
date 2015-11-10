@@ -8,10 +8,8 @@ namespace Libgit2
     {
         internal protected Libgit2Object(void* nativeHandle, bool handleOwner)
         {
-            Assert.NotNull(nativeHandle);
-
             *_handle = nativeHandle;
-            _owner = handleOwner;
+            _owner = nativeHandle != null && handleOwner;
         }
 
         ~Libgit2Object()
@@ -21,8 +19,8 @@ namespace Libgit2
 
         protected readonly object @lock = new object();
 
-        private readonly void** _handle;
-        private readonly bool _owner;
+        private void** _handle;
+        private bool _owner;
 
         private bool _disposed;
 
@@ -41,6 +39,20 @@ namespace Libgit2
         }
 
         internal protected abstract void Free();
+
+        internal protected void SetHandle(void* nativeHandle, bool handleOwner)
+        {
+            lock (@lock)
+            {
+                if (_handle != null && _owner)
+                {
+                    Free();
+                }
+
+                *_handle = nativeHandle;
+                _owner = handleOwner;
+            }
+        }
 
         public IDisposable Lock()
         {

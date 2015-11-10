@@ -19,6 +19,6 @@ namespace Libgit2
             NativeMethods.git_packbuilder_free(NativeHandle);
         }
 
-        public delegate ErrorCode ProgressCallback(PackBuilderStage stage, uint current);
+        public delegate ErrorCode ProgressDelegate(PackBuilderStage stage, uint current, uint total);
     }
 }

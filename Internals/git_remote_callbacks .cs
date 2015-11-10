@@ -8,7 +8,7 @@ namespace Libgit2.Internals
     /// the network operations.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal unsafe struct git_remote_callbacks 
+    internal unsafe struct git_remote_callbacks
     {
         internal uint version;
 
@@ -85,9 +85,4 @@ namespace Libgit2.Internals
         /// </summary>
         internal void* payload;
     }
-
-    
-    internal unsafe delegate result git_remote_completion_cb(RemoteCompletionType type, void* payload);    
-    internal unsafe delegate result git_remote_update_tips_cb(byte* refname, git_oid* a, git_oid* b, void* data);
-    internal unsafe delegate result git_remote_push_update_reference_cb(byte* refname, byte* status, void* data);
 }

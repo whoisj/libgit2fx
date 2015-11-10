@@ -81,6 +81,6 @@ namespace Libgit2
         protected internal override void Free()
         { }
 
-        public delegate ErrorCode Callback(TransferProgress stats);
+        public delegate ErrorCode ReportDelegate(TransferProgress stats);
     }
 }

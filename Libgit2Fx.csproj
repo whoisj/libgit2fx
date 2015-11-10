@@ -67,13 +67,15 @@
     <Compile Include="FetchPruneType.cs" />
     <Compile Include="FetchTagType.cs" />
     <Compile Include="FileMode.cs" />
-    <Compile Include="DelegateMap.cs" />
     <Compile Include="Internals\git_cert_hostkey.cs" />
     <Compile Include="Internals\git_cert_x509.cs" />
     <Compile Include="Merge.cs" />
     <Compile Include="PackBuilder.cs" />
     <Compile Include="Push.cs" />
+    <Compile Include="PushUpdates.cs" />
     <Compile Include="RemoteHead.cs" />
+    <Compile Include="RemoteHeads.cs" />
+    <Compile Include="StringArray.cs" />
     <Compile Include="ValueMd5.cs" />
     <Compile Include="Murmur3.cs" />
     <Compile Include="ValueSha1.cs" />

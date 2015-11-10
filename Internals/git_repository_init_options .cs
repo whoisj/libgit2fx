@@ -56,7 +56,7 @@ namespace Libgit2.Internals
                 initial_head = value.InitialHead,
                 mode = RepositoryInitMode.SharedUMask,
                 origin_url = value.OriginUrl,
-                template_path = value.TemplatPath,
+                template_path = value.TemplatePath,
                 workdir_path = value.WorkingDirectory,
             };
         }

@@ -24,6 +24,6 @@ namespace Libgit2
             NativeMethods.git_cred_free(NativeHandle);
         }
 
-        public delegate ErrorCode AcquireCallback(Credential credential, mstring url, mstring username_from_url, CredentialFlags allowed_types);
+        public delegate ErrorCode AcquireDelegate(Credential credential, mstring url, mstring username_from_url, CredentialFlags allowed_types);
     }
 }

@@ -4,12 +4,6 @@ namespace Libgit2
 {
     public sealed unsafe class Push : Libgit2Object
     {
-        static Push()
-        {
-            DelegateMap.Add(typeof(NegotiationCallback), typeof(git_push_negotiation));
-            DelegateMap.Add(typeof(TransferProgressCallback), typeof(git_push_transfer_progress));
-        }
-
         internal Push(git_push* nativeHandle)
             : base(nativeHandle, false)
         {
@@ -72,7 +66,7 @@ namespace Libgit2
         protected internal override void Free()
         { }
 
-        public delegate ErrorCode NegotiationCallback (PushUpdate[] updates, ulong len);
-        public delegate ErrorCode TransferProgressCallback(uint current, uint total, ulong size);
+        public delegate ErrorCode NegotiationDelegate(PushUpdates updates);
+        public delegate ErrorCode TransferProgressDelegate(uint current, uint total, ulong size);
     }
 }

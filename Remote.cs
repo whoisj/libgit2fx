@@ -37,9 +37,9 @@ namespace Libgit2
         public delegate ErrorCode CreateCallback(out Remote remote, Repository repository, mstring name, mstring url);
         public delegate ErrorCode RenameProblemCallback(mstring problematicRefspecName);
         public delegate ErrorCode TransferMessageCallback(TransferProgress progress);
-        public delegate ErrorCode CompletionCallback(RemoteCompletionType type);
+        public delegate ErrorCode CompletionDelegate(RemoteCompletionType type);
         public delegate ErrorCode UpdateTipsCallback(mstring refname, Oid a, Oid b);
-        public delegate ErrorCode PushUpdateReferenceCallback(mstring refname, mstring status);
+        public delegate ErrorCode PushUpdateReferenceDelegate(mstring refname, mstring status);
         public delegate ErrorCode PushNegotiationCallback(out PushUpdate updates, ulong len);
         public delegate ErrorCode PushTransferProgress(uint current, uint total, ulong size);
     }
